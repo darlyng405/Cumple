@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños, Shadai</title>
+
+    <!-- Google Fonts: Solo Playfair Display para títulos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <!--
+    ============================================================
+    🎨 PALETA DE COLORES
+    ============================================================
+    Azul claro:      #b8d8e8  (fondos suaves)
+    Azul medianoche: #1a2a4a  (títulos, textos destacados)
+    Rosa suave:      #f4b8c1  (acentos, detalles)
+    Rosa palo:       #f9dde0  (fondos cálidos)
+    Rojo acento:     #c0392b  (usado con moderación)
+    Blanco roto:     #fdf6f0  (fondo principal, papel)
+    Negro suave:     #2d2d2d  (texto de cuerpo)
+    ============================================================
+    -->
+
+    <!-- AQUÍ COMIENZA EL CSS (en producción iría en <style> o archivo separado) -->
+    <style>
+        /* ============ RESET Y VARIABLES ============ */
+        :root {
+            --azul-claro: #b8d8e8;
+            --azul-medianoche: #1a2a4a;
+            --rosa-suave: #f4b8c1;
+            --rosa-palo: #f9dde0;
+            --rojo-acento: #c0392b;
+            --blanco-roto: #fdf6f0;
+            --negro-suave: #2d2d2d;
+            --blanco: #ffffff;
+            --gris-claro: #f0ece8;
+            --font-titulos: 'Playfair Display', 'Times New Roman', Georgia, serif;
+            --font-texto: 'Times New Roman', Georgia, 'Liberation Serif', serif;
+            --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transicion: 0.35s ease;
+            --sombra-suave: 0 2px 16px rgba(0,0,0,0.06);
+            --sombra-media: 0 6px 28px rgba(0,0,0,0.10);
+            --borde-redondeado: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-texto);
+            background-color: var(--blanco-roto);
+            color: var(--negro-suave);
+            min-height: 100vh;
+            line-height: 1.6;
+            background-image:
+                radial-gradient(ellipse at 30% 20%, rgba(184,216,232,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 60%, rgba(249,221,224,0.30) 0%, transparent 55%);
+            background-attachment: fixed;
+        }
+
+        /* ============ NAVEGACIÓN ============ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(26,42,74,0.08);
+            box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+        }
+
+        nav button {
+            background: transparent;
+            border: 1.5px solid transparent;
+            color: #5a6a7a;
+            font-family: var(--font-ui);
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 24px;
+            transition: all var(--transicion);
+            white-space: nowrap;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        nav button:hover {
+            color: var(--azul-medianoche);
+            background: rgba(26,42,74,0.04);
+            border-color: rgba(26,42,74,0.10);
+        }
+
+        nav button.activo {
+            color: #ffffff;
+            background: var(--azul-medianoche);
+            border-color: var(--azul-medianoche);
+            font-weight: 600;
+            box-shadow: 0 2px 12px rgba(26,42,74,0.15);
+        }
+
+        /* ============ CONTENEDOR PRINCIPAL ============ */
+        main {
+            padding-top: 90px;
+            max-width: 880px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 60px;
+        }
+
+        /* ============ SECCIONES ============ */
+        .seccion {
+            display: none;
+            animation: fadeIn 0.45s ease forwards;
+            padding: 20px 0 40px;
+        }
+
+        .seccion.activa {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ SECCIÓN INICIO ============ */
+        #inicio {
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        #inicio.activa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+        }
+
+        .marco-foto {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--gris-claro);
+            border: 4px solid var(--rosa-palo);
+            box-shadow: 0 0 0 8px rgba(244,184,193,0.12), 0 8px 32px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            color: #999;
+            letter-spacing: 0.04em;
+            margin-bottom: 28px;
+            overflow: hidden;
+            transition: box-shadow 0.4s ease;
+        }
+
+        .marco-foto:hover {
+            box-shadow: 0 0 0 8px rgba(244,184,193,0.22), 0 12px 40px rgba(0,0,0,0.12);
+        }
+
+        .marco-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .nombre-hero {
+            font-family: var(--font-titulos);
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 700;
+            color: var(--azul-medianoche);
+            letter-spacing: 0.02em;
+            margin-bottom: 10px;
+            line-height: 1.05;
+        }
+
+        .tagline {
+            font-family: var(--font-titulos);
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            color: #6a5a6a;
+            font-weight: 400;
+            margin-bottom: 24px;
+            max-width: 500px;
+        }
+
+        .mensaje-bienvenida {
+            font-family: var(--font-texto);
+            font-size: 1.05rem;
+            color: #4a4a4a;
+            max-width: 520px;
+            line-height: 1.75;
+            background: rgba(255,255,255,0.7);
+            padding: 22px 28px;
+            border-radius: var(--borde-redondeado);
+            border: 1px solid rgba(26,42,74,0.06);
+            box-shadow: var(--sombra-suave);
+        }
+
+        /* ============ SECCIÓN POEMAS ============ */
+        #poemas {
+            padding-top: 20px;
+        }
+
+        .titulo-seccion {
+            font-family: var(--font-titulos);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--azul-medianoche);
+            text-align: center;
+            margin-bottom: 32px;
+            letter-spacing: 0.03em;
+        }
+
+        .contenedor-poemas {
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        .poema-card {
+            background: var(--blanco);
+            border-radius: var(--borde-redondeado);
+            padding: 30px 34px;
+            box-shadow: var(--sombra-suave);
+            border-left: 4px solid var(--rosa-suave);
+            transition: box-shadow var(--transicion);
+        }
+
+        .poema-card:hover {
+            box-shadow: var(--sombra-media);
+        }
+
+        .poema-titulo {
+            font-family: var(--font-titulos);
+            font-size: 1.25rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--azul-medianoche);
+            margin-bottom: 16px;
+            letter-spacing: 0.03em;
+        }
+
+        .poema-texto {
+            font-family: var(--font-texto);
+            font-size: 12px;
+            line-height: 2.0;
+            text-align: justify;
+            color: #3a3a3a;
+            white-space: pre-line;
+        }
+
+        /* ============ SECCIÓN CARTA ============ */
+        #carta {
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+        }
+
+        #carta.activa {
+            display: flex;
+        }
+
+        .carta-papel {
+            background: #fefefa;
+            border-radius: 4px;
+            padding: 44px 40px;
+            max-width: 680px;
+            width: 100%;
+            box-shadow:
+                0 1px 4px rgba(0,0,0,0.06),
+                0 8px 30px rgba(0,0,0,0.08),
+                inset 0 0 0 1px rgba(0,0,0,0.03);
+            position: relative;
+            /* Líneas de papel sutil */
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 31px,
+                    rgba(180,180,200,0.10) 31px,
+                    rgba(180,180,200,0.10) 32px
+                );
+            background-attachment: local;
+        }
+
+        .carta-encabezado {
+            font-family: var(--font-texto);
+            font-size: 12px;
+            line-height: 1.9;
+            text-align: justify;
+            color: #2d2d2d;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .carta-cuerpo {
+            font-family: var(--font-texto);
+            font-size: 12px;
+            line-height: 1.9;
+            text-align: justify;
+            color: #2d2d2d;
+            white-space: pre-line;
+        }
+
+        .carta-firma {
+            font-family: var(--font-texto);
+            font-size: 12px;
+            line-height: 1.9;
+            text-align: right;
+            color: #2d2d2d;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ============ SECCIÓN FLORES ============ */
+        #flores {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        #flores.activa {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contenedor-canvas {
+            width: 100%;
+            max-width: 720px;
+            height: 55vh;
+            min-height: 380px;
+            border-radius: var(--borde-redondeado);
+            overflow: hidden;
+            box-shadow: var(--sombra-media);
+            position: relative;
+            cursor: pointer;
+            background: #0a0a0a;
+            margin-bottom: 28px;
+        }
+
+        #canvas-flores {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--borde-redondeado);
+        }
+
+        .indicador {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.45);
+            pointer-events: none;
+            letter-spacing: 0.05em;
+            transition: opacity 0.6s ease;
+        }
+
+        .mensaje-final {
+            font-family: var(--font-titulos);
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--azul-medianoche);
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            line-height: 1.7;
+            max-width: 560px;
+            padding: 20px;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 0.7rem;
+            color: #aaa;
+            letter-spacing: 0.06em;
+            font-family: var(--font-ui);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            nav button {
+                font-size: 0.72rem;
+                padding: 8px 13px;
+                border-radius: 20px;
+            }
+            nav {
+                gap: 2px;
+                padding: 10px 8px;
+            }
+            main {
+                padding-top: 78px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+            .nombre-hero {
+                font-size: clamp(2rem, 10vw, 3.5rem);
+            }
+            .marco-foto {
+                width: 130px;
+                height: 130px;
+            }
+            .poema-card {
+                padding: 22px 18px;
+            }
+            .carta-papel {
+                padding: 26px 20px;
+            }
+            .contenedor-canvas {
+                height: 42vh;
+                min-height: 280px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            nav button {
+                font-size: 0.66rem;
+                padding: 7px 9px;
+            }
+            .nombre-hero {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <!-- AQUÍ TERMINA EL CSS -->
+</head>
+<body>
+
+    <!-- ============ NAVEGACIÓN ============ -->
+    <nav aria-label="Navegación principal">
+        <button data-seccion="inicio" class="activo" aria-current="page">Inicio</button>
+        <button data-seccion="poemas">Poemas</button>
+        <button data-seccion="carta">Carta</button>
+        <button data-seccion="flores">Flores</button>
+    </nav>
+
+    <!-- ============ CONTENIDO PRINCIPAL ============ -->
+    <main>
+
+        <!-- SECCIÓN 1: INICIO -->
+        <section id="inicio" class="seccion activa" aria-labelledby="titulo-inicio">
+            <!--
+            ============================================
+            📸 FOTO DE SHADAI — REEMPLAZA EL PLACEHOLDER
+            ============================================
+            Coloca la imagen (ej: "shadai.jpg") en la misma carpeta.
+            Luego cambia el src del <img> dentro de .marco-foto.
+            Si no hay imagen, se muestra el texto placeholder.
+            -->
+            <div class="marco-foto" title="Foto de Shadai">
+                <!-- REEMPLAZA esta ruta con la foto real -->
+                <!-- <img src="shadai.jpg" alt="Shadai"> -->
+                <span>[FOTO DE SHADAI AQUÍ]</span>
+            </div>
+            <h1 class="nombre-hero" id="titulo-inicio">Shadai</h1>
+            <p class="tagline">Hoy el mundo es un poco mejor porque estás en él.</p>
+            <div class="mensaje-bienvenida">
+                <!--
+                ================================================
+                ✏️ MENSAJE DE INICIO — PERSONALÍZALO
+                ================================================
+                -->
+                Bienvenida a tu rincón especial. Cada detalle de esta página está pensado para recordarte lo increíble que eres. Hoy celebramos tu existencia y todo lo que significas para quienes tenemos la suerte de conocerte.
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: POEMAS -->
+        <section id="poemas" class="seccion" aria-labelledby="titulo-poemas">
+            <h2 class="titulo-seccion" id="titulo-poemas">Poemas para ti</h2>
+            <div class="contenedor-poemas">
+
+                <!-- POEMA 1 -->
+                <article class="poema-card">
+                    <h3 class="poema-titulo">Por si lo olvidas</h3>
+                    <p class="poema-texto">Te amo,
+tal vez ya estés harta de que lo repita tanto,
+pero solo quiero que lo recuerdes
+por si algún día lo olvidas.
+Te amo y no sé qué hacer,
+te amo tanto que a veces me quitas el aire
+con una de tus caricias,
+te acercas sabiendo bien que me muero por ti
+y yo indefenso no puedo hacer nada para evitarlo.
+Sabes que te amo con una inmensidad
+que nada ni nadie podrá quitarlo,
+y lamento si mis palabras te abruman,
+pero solamente quiero que recuerdes
+que jamás dejaré de amarte.</p>
+                </article>
+
+                <!-- POEMA 2 -->
+                <article class="poema-card">
+                    <h3 class="poema-titulo">El regalo no pedido</h3>
+                    <p class="poema-texto">Agradezco el simple hecho de tenerte a mi lado,
+tal vez suene absurdo, pero en tu presencia
+hasta lo ordinario se vuelve sagrado.
+Tu risa, tu mano,
+incluso tu silencio que es dulce.
+Porque contigo hasta un martes cualquiera
+se vuelve hermoso, con miradas
+y una paz que se construye sin esfuerzo.
+Así de simple, mi mayor suerte
+es despertar y saber que estás cerca,
+y que este amor, sencillo y profundo,
+es el regalo más dulce que la vida
+pudo darme sin yo siquiera pedirlo.</p>
+                </article>
+
+                <!-- POEMA 3 -->
+                <article class="poema-card">
+                    <h3 class="poema-titulo">Perdón por amarla</h3>
+                    <p class="poema-texto">Dios mío, perdóname por amarla tanto,
+por haberme acostumbrado a su nombre
+y necesitarla sin que ella lo sepa.
+Perdóname por los días que la pienso
+cuando debería estar en otras cosas,
+por sonreír solo de recordarla
+sin que nadie entienda por qué.
+Perdóname, pero si volviera a ese momento,
+a esa primera vez que la vi,
+lo volvería a hacer exactamente igual,
+porque amarla es lo mejor que me ha pasado.</p>
+                </article>
+
+                <!-- POEMA 4 -->
+                <article class="poema-card">
+                    <h3 class="poema-titulo">Un único deseo</h3>
+                    <p class="poema-texto">Le pediría a los cielos que te mantuvieran
+por siempre a mi lado,
+con ese aferro como quien sostiene una estrella
+sin miedo a que la noche la reclame.
+No por afán de retenerte,
+sino porque cuando estás cerca
+todo parece encontrar su lugar
+sin necesidad de explicarse.
+Si pudiera elegir un deseo eterno,
+no pediría coronas ni tesoros,
+sino tu risa cerca,
+como quien encuentra en medio del mundo
+un sitio donde descansa el alma.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: CARTA -->
+        <section id="carta" class="seccion" aria-labelledby="titulo-carta">
+            <div class="carta-papel">
+                <p class="carta-encabezado" id="titulo-carta">Para Shadai,</p>
+                <p class="carta-cuerpo">Sinceramente no sé cómo empezar esto, pero creo que así es más sincero, una carta, aunque sea virtual, sigue siendo una carta :)
+
+Hoy (bueno mañana) cumples 18 años ya casi 3 años de conocernos, y entre tantas cosas que podría decirte, lo único que sé es que no quiero que fuera un mensaje más, quiero que se sienta especial, que sea especial para que sepas lo especial que eres no solo para mí, si no para todos los que te conocemos.
+
+¿Sabes? hay personas que llegan a tu vida y simplemente pasan, te enseñan algo sea bueno o malo y ya, solo desaparecen, pero hay otras que se quedan, que no solo te enseñan algo, te ayudan, te hacen mejorar, se vuelven una inspiración. Tú eres de esas de esa persona, o mejor dicho para mi tu eres esa persona.
+
+A veces me pongo a pensar en todo lo que vivimos, en las conversaciones, en los momentos simples que sin darme cuenta se volvieron importantes y en todas esas veces que me hiciste sentir bien, feliz, vivo… y solo me queda agradecerte, me queda darte las gracias por estar ahí, por escuchar, por entender, gracias por ser tu.
+
+Con esta carta solo quería recordarte eso, que por mas que en tu vida pasen cosas que no quieras, que no te gusten, que te molesten o te estresen, nunca dejes de ser tu, nunca dejes de ser esa niña con esos hermosos sentimientos, con esa inteligencia para todo, con esa valentía de intentar, con esa hambre de ayudar, eres alguien mas que especial y quiero que siempre recuerdes eso.
+
+No sé qué traerá el futuro, no sé qué nos deparará la vida, pero hay algo que sí sé: 
+Me alegra que sigas estando en mi vida. Porque no eres alguien más. Nunca lo has sido.
+
+Hoy solo quiero que sonrías, que la pases increíble, y que recuerdes lo especial que eres, no solo para mí, sino para cualquiera que tenga la suerte de conocerte de verdad.
+
+Feliz cumpleaños niña, recuerda que siempre estaré para ti deseándote lo mejor.</p>
+                <p class="carta-firma">Con todo el amor que tengo Darlyng, loviu &lt;3.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: FLORES -->
+        <section id="flores" class="seccion" aria-labelledby="titulo-flores">
+            <h2 class="titulo-seccion" id="titulo-flores">Un jardín para ti</h2>
+            <div class="contenedor-canvas" id="contenedor-canvas">
+                <!--
+                ============================================
+                🌸 CANVAS DE FLORES INTERACTIVO
+                - Las flores crecen automáticamente.
+                - Pasa el mouse sobre una flor para verla brillar.
+                - Haz clic para sembrar nuevas flores.
+                ============================================
+                -->
+                <canvas id="canvas-flores" aria-label="Jardín interactivo de flores"></canvas>
+                <span class="indicador" id="indicador">Haz clic para sembrar más flores</span>
+            </div>
+            <p class="mensaje-final">
+                <!--
+                ============================================
+                ✏️ MENSAJE FINAL — PERSONALÍZALO
+                ============================================
+                -->
+                Que cada flor de este jardín te recuerde lo especial que eres. Feliz cumpleaños, Shadai.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        Hecho con amor &bull; Para Shadai &bull; Que la vida te sonría siempre
+    </footer>
+
+    <!--
+    ============================================================
+    AQUÍ COMIENZA EL JAVASCRIPT
+    ============================================================
+    -->
+    <script>
+        (function() {
+            // =============================================
+            // 1. NAVEGACIÓN ENTRE PESTAÑAS
+            // =============================================
+            const botonesNav = document.querySelectorAll('nav button');
+            const secciones = document.querySelectorAll('.seccion');
+            let seccionActiva = 'inicio';
+
+            /**
+             * Cambia a la sección indicada.
+             * @param {string} nombreSeccion - El id de la sección (sin #).
+             */
+            function cambiarSeccion(nombreSeccion) {
+                if (nombreSeccion === seccionActiva) return;
+
+                // Ocultar todas las secciones
+                secciones.forEach(sec => {
+                    sec.classList.remove('activa');
+                    sec.style.display = 'none';
+                });
+
+                // Mostrar la sección seleccionada
+                const seccionMostrar = document.getElementById(nombreSeccion);
+                if (seccionMostrar) {
+                    seccionMostrar.style.display = '';
+                    void seccionMostrar.offsetWidth; // Reflow para reiniciar animación
+                    seccionMostrar.classList.add('activa');
+
+                    // Ajustes específicos por sección
+                    if (nombreSeccion === 'inicio' || nombreSeccion === 'carta' || nombreSeccion === 'flores') {
+                        seccionMostrar.style.display = 'flex';
+                    }
+                    if (nombreSeccion === 'flores') {
+                        redimensionarCanvas();
+                        if (floresJardin.length === 0) {
+                            iniciarJardin();
+                        }
+                    }
+                }
+
+                // Actualizar botones
+                botonesNav.forEach(btn => {
+                    btn.classList.remove('activo');
+                    btn.removeAttribute('aria-current');
+                    if (btn.dataset.seccion === nombreSeccion) {
+                        btn.classList.add('activo');
+                        btn.setAttribute('aria-current', 'page');
+                    }
+                });
+
+                seccionActiva = nombreSeccion;
+            }
+
+            // Event listeners en los botones de navegación
+            botonesNav.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cambiarSeccion(btn.dataset.seccion);
+                });
+            });
+
+            // =============================================
+            // 2. CANVAS DE FLORES
+            // =============================================
+            const canvas = document.getElementById('canvas-flores');
+            const ctx = canvas ? canvas.getContext('2d') : null;
+            const contenedor = document.getElementById('contenedor-canvas');
+            const indicador = document.getElementById('indicador');
+            let floresJardin = [];
+            let mouseX = -100;
+            let mouseY = -100;
+            const MAX_FLORES = 24;
+            let animacionActiva = true;
+
+            function redimensionarCanvas() {
+                if (!canvas || !contenedor) return;
+                const rect = contenedor.getBoundingClientRect();
+                if (rect.width === 0 || rect.height === 0) return;
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                canvas.style.width = rect.width + 'px';
+                canvas.style.height = rect.height + 'px';
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.scale(dpr, dpr);
+            }
+
+            /**
+             * Crea una flor tipo margarita.
+             */
+            function crearMargarita(x, yFinal) {
+                const tonosPetalo = [
+                    'rgba(244,184,193,0.88)',
+                    'rgba(249,221,224,0.88)',
+                    'rgba(255,240,245,0.82)',
+                    'rgba(244,184,193,0.72)',
+                    'rgba(249,221,224,0.78)',
+                ];
+                return {
+                    tipo: 'margarita',
+                    x: x,
+                    yFinal: Math.max(yFinal, 30),
+                    crecimiento: 0,
+                    velocidad: 0.005 + Math.random() * 0.012,
+                    escala: 0.7 + Math.random() * 1.1,
+                    colorPetalo: tonosPetalo[Math.floor(Math.random() * tonosPetalo.length)],
+                    numPetalos: 9 + Math.floor(Math.random() * 4),
+                    curvatura: (Math.random() - 0.5) * 0.30,
+                    brillo: 0,
+                };
+            }
+
+            /**
+             * Crea una rama con capullos.
+             */
+            function crearRama(x, yFinal) {
+                const numCapullos = 7 + Math.floor(Math.random() * 8);
+                const capullos = [];
+                for (let i = 0; i < numCapullos; i++) {
+                    const offset = 0.08 + (i / numCapullos) * 0.88;
+                    const lado = (i % 2 === 0) ? 1 : -1;
+                    const distancia = 4 + Math.random() * 14;
+                    const colores = [
+                        'rgba(212,197,226,0.82)',
+                        'rgba(232,213,245,0.78)',
+                        'rgba(249,221,224,0.78)',
+                        'rgba(220,200,215,0.78)',
+                    ];
+                    capullos.push({
+                        offset: offset,
+                        lado: lado * distancia,
+                        color: colores[Math.floor(Math.random() * colores.length)],
+                        tamano: 2.5 + Math.random() * 4.5,
+                    });
+                }
+                return {
+                    tipo: 'rama',
+                    x: x,
+                    yFinal: Math.max(yFinal, 25),
+                    crecimiento: 0,
+                    velocidad: 0.004 + Math.random() * 0.010,
+                    escala: 0.75 + Math.random() * 0.75,
+                    curvatura: (Math.random() - 0.5) * 0.45,
+                    capullos: capullos,
+                    brillo: 0,
+                };
+            }
+
+            /**
+             * Añade una nueva flor al jardín.
+             */
+            function sembrarFlor(x, y) {
+                if (!canvas || floresJardin.length >= MAX_FLORES) return;
+                const w = canvas.clientWidth || 700;
+                const h = canvas.clientHeight || 500;
+                const posX = x !== null && x !== undefined ? x : 30 + Math.random() * (w - 60);
+                const posY = y !== null && y !== undefined ? y : h * 0.15 + Math.random() * h * 0.60;
+                const nueva = Math.random() < 0.52 ?
+                    crearMargarita(posX, posY) :
+                    crearRama(posX, posY);
+                floresJardin.push(nueva);
+            }
+
+            /**
+             * Inicia el jardín con flores distribuidas.
+             */
+            function iniciarJardin() {
+                floresJardin = [];
+                if (!canvas) return;
+                const w = canvas.clientWidth || 700;
+                const h = canvas.clientHeight || 500;
+                const cantidad = 9 + Math.floor(Math.random() * 5);
+                for (let i = 0; i < cantidad; i++) {
+                    const x = w * 0.06 + (i / (cantidad - 1)) * w * 0.88 + (Math.random() - 0.5) * 35;
+                    const y = h * 0.10 + Math.random() * h * 0.55;
+                    sembrarFlor(x, y);
+                }
+                if (indicador) {
+                    indicador.style.opacity = '1';
+                    setTimeout(() => {
+                        if (indicador && floresJardin.length > 4) indicador.style.opacity = '0.3';
+                    }, 5000);
+                }
+            }
+
+            /**
+             * Dibuja una margarita.
+             */
+            function dibujarMargarita(flor) {
+                const { x, yFinal, crecimiento, escala, colorPetalo, numPetalos, curvatura, brillo } = flor;
+                const baseY = ctx.canvas.clientHeight || 500;
+                const alturaTallo = yFinal * Math.min(crecimiento * 1.35, 1);
+                const cabezaY = baseY - alturaTallo;
+                if (crecimiento < 0.02) return;
+
+                const curvado = curvatura * 32 * Math.sin(crecimiento * Math.PI);
+                ctx.save();
+                ctx.strokeStyle = '#2d6a4f';
+                ctx.lineWidth = 2.0 * escala;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(x, baseY);
+                ctx.quadraticCurveTo(x + curvado, baseY - alturaTallo * 0.5, x + curvado * 0.4, cabezaY);
+                ctx.stroke();
+
+                if (crecimiento < 0.50) { ctx.restore(); return; }
+                const progCabeza = Math.min((crecimiento - 0.50) / 0.50, 1);
+
+                // Brillo
+                if (brillo > 0.01) {
+                    const grad = ctx.createRadialGradient(x, cabezaY, 0, x, cabezaY, 50 * escala);
+                    grad.addColorStop(0, 'rgba(255,240,220,' + (0.65 * brillo) + ')');
+                    grad.addColorStop(1, 'rgba(244,184,193,0)');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(x, cabezaY, 50 * escala, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Pétalos
+                const radioBase = 15 * escala * progCabeza;
+                const largo = 20 * escala * progCabeza;
+                for (let i = 0; i < numPetalos; i++) {
+                    const ang = (i / numPetalos) * Math.PI * 2;
+                    const px = x + Math.cos(ang) * radioBase;
+                    const py = cabezaY + Math.sin(ang) * radioBase;
+                    ctx.save();
+                    ctx.fillStyle = colorPetalo;
+                    ctx.globalAlpha = 0.78 * progCabeza;
+                    ctx.translate(px, py);
+                    ctx.rotate(ang);
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, largo * 0.52, largo * 0.26, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+
+                // Centro
+                ctx.fillStyle = 'rgba(254,249,195,0.88)';
+                ctx.globalAlpha = progCabeza;
+                ctx.beginPath();
+                ctx.arc(x, cabezaY, 6.5 * escala * progCabeza, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = 'rgba(210,190,130,0.65)';
+                for (let i = 0; i < 5; i++) {
+                    const ang = Math.random() * Math.PI * 2;
+                    const dist = Math.random() * 3 * escala * progCabeza;
+                    ctx.beginPath();
+                    ctx.arc(x + Math.cos(ang) * dist, cabezaY + Math.sin(ang) * dist, 1.1 * escala * progCabeza, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+
+            /**
+             * Dibuja una rama con capullos.
+             */
+            function dibujarRama(flor) {
+                const { x, yFinal, crecimiento, escala, curvatura, capullos, brillo } = flor;
+                const baseY = ctx.canvas.clientHeight || 500;
+                const alturaTallo = yFinal * Math.min(crecimiento * 1.35, 1);
+                const cabezaY = baseY - alturaTallo;
+                if (crecimiento < 0.02) return;
+
+                const curvado = curvatura * 36 * Math.sin(crecimiento * Math.PI);
+                ctx.save();
+                ctx.strokeStyle = '#2d6a4f';
+                ctx.lineWidth = 1.6 * escala;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(x, baseY);
+                ctx.quadraticCurveTo(x + curvado, baseY - alturaTallo * 0.5, x + curvado * 0.35, cabezaY);
+                ctx.stroke();
+
+                if (crecimiento < 0.42) { ctx.restore(); return; }
+                const progCabeza = Math.min((crecimiento - 0.42) / 0.58, 1);
+
+                if (brillo > 0.01) {
+                    const grad = ctx.createRadialGradient(x, cabezaY, 0, x, cabezaY, 42 * escala);
+                    grad.addColorStop(0, 'rgba(255,240,220,' + (0.55 * brillo) + ')');
+                    grad.addColorStop(1, 'rgba(244,184,193,0)');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(x, cabezaY, 42 * escala, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                capullos.forEach(cap => {
+                    const offsetY = cap.offset * alturaTallo;
+                    const capY = baseY - offsetY;
+                    const capX = x + curvado * (1 - cap.offset) + cap.lado * progCabeza;
+                    if (cap.offset > crecimiento * 1.28) return;
+                    const capProg = Math.min(Math.max((crecimiento * 1.28 - cap.offset) / 0.38, 0), 1);
+                    ctx.save();
+                    ctx.fillStyle = cap.color;
+                    ctx.globalAlpha = capProg * 0.78;
+                    ctx.beginPath();
+                    ctx.ellipse(capX, capY, cap.tamano * escala, cap.tamano * escala * 0.58, -0.2, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+                ctx.restore();
+            }
+
+            /**
+             * Dibuja todo el jardín.
+             */
+            function dibujarJardin() {
+                const w = ctx.canvas.clientWidth;
+                const h = ctx.canvas.clientHeight;
+                ctx.fillStyle = '#0a0a0a';
+                ctx.fillRect(0, 0, w, h);
+
+                // Pequeñas partículas atmosféricas
+                const t = performance.now() * 0.001;
+                for (let i = 0; i < 12; i++) {
+                    const px = (Math.sin(t * 0.35 + i * 2.5) * 0.5 + 0.5) * w;
+                    const py = (Math.cos(t * 0.45 + i * 1.8) * 0.5 + 0.5) * h;
+                    ctx.fillStyle = 'rgba(255,255,240,' + (0.12 + Math.sin(t + i) * 0.06) + ')';
+                    ctx.beginPath();
+                    ctx.arc(px, py, 1.0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                floresJardin.forEach(flor => {
+                    if (flor.tipo === 'margarita') dibujarMargarita(flor);
+                    else if (flor.tipo === 'rama') dibujarRama(flor);
+                });
+            }
+
+            /**
+             * Actualiza crecimiento y brillo.
+             */
+            function actualizarJardin() {
+                floresJardin.forEach(flor => {
+                    if (flor.crecimiento < 1) {
+                        flor.crecimiento += flor.velocidad;
+                        if (flor.crecimiento > 1) flor.crecimiento = 1;
+                    }
+                    flor.brillo += (0 - flor.brillo) * 0.10;
+                });
+            }
+
+            /**
+             * Detecta hover para brillo.
+             */
+            function actualizarBrillo(mx, my) {
+                if (!canvas) return;
+                const h = canvas.clientHeight || 500;
+                floresJardin.forEach(flor => {
+                    const florY = h - flor.yFinal * Math.min(flor.crecimiento * 1.35, 1);
+                    const dx = mx - flor.x;
+                    const dy = my - florY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const radio = 50;
+                    if (dist < radio) {
+                        flor.brillo = Math.max(flor.brillo, 1 - dist / radio);
+                    }
+                });
+            }
+
+            /**
+             * Loop de animación.
+             */
+            function animar() {
+                if (!canvas || !ctx || !animacionActiva) {
+                    requestAnimationFrame(animar);
+                    return;
+                }
+                const seccionFlores = document.getElementById('flores');
+                const estaActiva = seccionFlores && seccionFlores.classList.contains('activa');
+                if (estaActiva && canvas.clientWidth > 0 && canvas.clientHeight > 0) {
+                    redimensionarCanvas();
+                    actualizarJardin();
+                    dibujarJardin();
+                }
+                requestAnimationFrame(animar);
+            }
+
+            // Eventos del canvas
+            if (canvas) {
+                canvas.addEventListener('mousemove', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouseX = e.clientX - rect.left;
+                    mouseY = e.clientY - rect.top;
+                    actualizarBrillo(mouseX, mouseY);
+                });
+
+                canvas.addEventListener('mouseleave', () => {
+                    mouseX = -100;
+                    mouseY = -100;
+                    floresJardin.forEach(f => f.brillo = 0);
+                });
+
+                canvas.addEventListener('click', (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const clickY = e.clientY - rect.top;
+                    const h = canvas.clientHeight;
+                    const yFinal = h - clickY;
+                    sembrarFlor(clickX, Math.max(yFinal, 20));
+                    if (indicador) {
+                        indicador.style.opacity = '0.8';
+                        setTimeout(() => {
+                            if (indicador && floresJardin.length > 3) indicador.style.opacity = '0.3';
+                        }, 2000);
+                    }
+                });
+
+                // Soporte táctil
+                canvas.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    const rect = canvas.getBoundingClientRect();
+                    mouseX = e.touches[0].clientX - rect.left;
+                    mouseY = e.touches[0].clientY - rect.top;
+                    actualizarBrillo(mouseX, mouseY);
+                }, { passive: false });
+
+                canvas.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    const rect = canvas.getBoundingClientRect();
+                    const tx = e.changedTouches[0].clientX - rect.left;
+                    const ty = e.changedTouches[0].clientY - rect.top;
+                    const h = canvas.clientHeight;
+                    sembrarFlor(tx, Math.max(h - ty, 20));
+                    mouseX = -100;
+                    mouseY = -100;
+                    floresJardin.forEach(f => f.brillo = 0);
+                }, { passive: false });
+            }
+
+            // =============================================
+            // 3. INICIALIZACIÓN
+            // =============================================
+            function inicializar() {
+                cambiarSeccion('inicio');
+                if (canvas && ctx) {
+                    redimensionarCanvas();
+                    iniciarJardin();
+                    requestAnimationFrame(animar);
+                }
+            }
+
+            // Redimensionar al cambiar el tamaño de la ventana
+            let timeoutRedimension;
+            window.addEventListener('resize', () => {
+                clearTimeout(timeoutRedimension);
+                timeoutRedimension = setTimeout(() => {
+                    redimensionarCanvas();
+                }, 200);
+            });
+
+            // Arranque
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', inicializar);
+            } else {
+                inicializar();
+            }
+
+            console.log('🌸 Página de cumpleaños para Shadai lista.');
+            console.log('   - Busca [FOTO DE SHADAI AQUÍ] para colocar su foto.');
+            console.log('   - Los poemas y la carta ya están incorporados.');
+            console.log('   - Haz clic en el jardín para sembrar más flores.');
+        })();
+    </script>
+    <!-- AQUÍ TERMINA EL JAVASCRIPT -->
+
+</body>
+</html>
